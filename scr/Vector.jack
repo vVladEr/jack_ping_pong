@@ -1,5 +1,6 @@
 class Vector2{
-    var int x, y;
+
+    field int x, y;
 
     constructor Vector2 new(int inputX, int inputY)
     {
@@ -21,6 +22,11 @@ class Vector2{
         let x = a.getX() + b.getX();
         let y = a.getY() + b.getY();
         return this;
+    }
+
+    method void dispose(){
+        do Memory.deAlloc(this);
+        return;
     }
 
 }
