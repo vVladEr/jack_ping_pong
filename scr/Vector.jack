@@ -1,0 +1,26 @@
+class Vector2{
+    var int x, y;
+
+    constructor Vector2 new(int inputX, int inputY)
+    {
+        let x = inputX;
+        let y = inputY;
+        return this;
+    }
+
+    method int getX() {
+        return x;
+    }
+
+    return int getY(){
+        return y;
+    }
+
+    constructor Vector2 new(Vector2 a, Vector2 b)
+    {
+        let x = a.getX() + b.getX();
+        let y = a.getY() + b.getY();
+        return this;
+    }
+
+}
