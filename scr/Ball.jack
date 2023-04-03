@@ -1,2 +1,47 @@
 class Ball{
+    field int radius, x, y, speed;
+    field Vector2 direction;
+
+    constructor Ball new()
+    {
+        let x = 127;
+        let y = 255;
+        let direction = Vector2.new(1,1);
+        let radius = 3;
+        let speed = 1;
+        return this;
+    }
+
+    method int getX() 
+    {
+        return x;
+    }
+
+    method int getY()
+    {
+        return y;
+    }
+
+    method int getRadius()
+    {
+        return radius;
+    }
+
+    method void changeDirection()
+    {
+        var Vector2 temp;
+        let temp = Vector2.new(-direction.getX, -direction.getY)
+        let direction = temp;
+    }
+
+    method void move()
+    {
+        let x = x + (direction.getX * speed);
+        let y = y + (direction.getY * speed);
+    }
+
+    method void increaseSpeed()
+    {
+        let speed = speed + 1;
+    }
 }
