@@ -1,0 +1,33 @@
+class Rocket()
+{
+    field int rtX, rtY, lbX, lbY;
+
+    constructor Rocket new(int rtx, int rty, int lbx, int lby)
+    {
+        let rtX = rtx;
+        let rtY = rty;
+        let lbX = lbx;
+        let lbY = lby;
+        return this;
+    }
+
+    method int getRTX()
+    {
+        return rtX;
+    }
+
+     method int getRTY()
+    {
+        return rtY;
+    }
+
+    method int getLBX()
+    {
+        return lbX;
+    }
+
+    method int getLBY()
+    {
+        return lbY;
+    }
+}
