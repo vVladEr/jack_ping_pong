@@ -1,3 +1,9 @@
 class Main {
-    return;
+    function void main () {
+        var Vector2 vector;  
+        let vector = Vector2.new(2,3);
+        do vector.dispose();
+        return;
+    }
+
 }

@@ -13,11 +13,11 @@ class Vector2{
         return x;
     }
 
-    return int getY(){
+    method int getY(){
         return y;
     }
 
-    constructor Vector2 new(Vector2 a, Vector2 b)
+    constructor Vector2 newFromTwoVectors(Vector2 a, Vector2 b)
     {
         let x = a.getX() + b.getX();
         let y = a.getY() + b.getY();
