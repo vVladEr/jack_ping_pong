@@ -36,4 +36,10 @@ class Rocket()
         let LTY = LTY + 1;
         let RBY = RBY + 1;
     }
+
+    method void moveDown()
+    {
+        let LTY = LTY - 1;
+        let RBY = RBY - 1;
+    }
 }
