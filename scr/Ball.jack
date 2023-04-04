@@ -66,4 +66,9 @@ class Ball{
         let speed = speed + 1;
         return;
     }
+
+    method void dispose(){
+        do Memory.deAlloc(this);
+        return;
+    }
 }
