@@ -29,7 +29,7 @@ class Ball{
 
     method void changeDirection(Vector2 a)
     {
-        direction = Vector2.sumVectors(a, direction);
+        let direction = Vector2.sumVectors(a, direction);
         return;
     }
 
@@ -52,6 +52,38 @@ class Ball{
         }
         let x = x + direction.getX;
         return;
+    }
+
+    method void hitBat(Bat bat, char dirKey)
+    {
+        var int delta;
+        let delta = x;
+        var Vector2 hit;
+        if (x < bat.getXLT()){
+            let x = bat.getXLT() - radius;
+            let delta = x - delta;
+            let hit = Vector2.new(-1,0);
+        }
+        else{
+            let x = bat.getXRB() + radius;
+            let delta = delta - x;
+            let hit = Vector2.new(1,0);
+        }
+        var Vector2 dir;
+        let dir = Vector2.new(0,0);
+        if (dirKey = 131){
+            let dir = Vector2.new(0,-1);
+        }
+        else{
+            if (dirKey = 133){
+                let dir = Vector2.new(0,1);
+            }
+        }
+        let y = direction.getY() * delta / direction.getX() + y;
+        var Vector2 temp;
+        let temp = Vector2.sumVectors(hit, dir);
+        direction.reflectX();
+        let direction = Vector2.sumVectors(direction, temp);
     }
 
     method void moveV()

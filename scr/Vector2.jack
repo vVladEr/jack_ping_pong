@@ -29,13 +29,13 @@ class Vector2{
 
     method void reflectX()
     {
-        x = -x;
+        let x = -x;
         return;
     }
 
     method void reflectY()
     {
-        y = -y;
+        let y = -y;
         return;
     }
 
