@@ -1,7 +1,7 @@
 class Ball{
     field int x, y, speed;
     field Vector2 direction;
-    field static int radius = 3;
+    static int radius = 3;
 
     constructor Ball new()
     {

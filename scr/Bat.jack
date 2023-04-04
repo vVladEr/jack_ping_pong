@@ -1,8 +1,8 @@
 class Bat{
     field int xLT, yLT;
-    field static int length = 20;
-    field static int width = 5;
-    field static int speed = 2;
+    static int length = 20;
+    static int width = 5;
+    static int speed = 2;
 
     constructor Bat new(int x)
     {
