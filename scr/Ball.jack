@@ -35,22 +35,22 @@ class Ball{
 
     method void moveD()
     {
-        if (direction.getY < 0){
-            if (-direction.getY > y - radius){
-                let y = - direction.getY - y + radius;
+        if (direction.getY() < 0){
+            if (-direction.getY() > y - radius){
+                let y = - direction.getY() - y + radius;
                 direction.reflectY();
             }
         }
         else{
-            if(direction.getY > 511 - y - radius){
-                let y = 1022 - direction.getY - y - radius; 
+            if(direction.getY() > 511 - y - radius){
+                let y = 1022 - direction.getY() - y - radius; 
                 direction.reflectY();
             }
             else{
-                let y = y + direction.getY;
+                let y = y + direction.getY();
             }
         }
-        let x = x + direction.getX;
+        let x = x + direction.getX();
         return;
     }
 
