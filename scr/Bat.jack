@@ -1,0 +1,44 @@
+class Bat{
+    field int xLT, yLT;
+    field static int length = 20;
+    field static int width = 5;
+    field static int speed = 2;
+
+    constructor Bat new(int x)
+    {
+        let xLT = x;
+        let yLT = 246;
+        return this;
+    }
+
+    method int getXLT(){
+        return xLT;
+    }
+
+    method int getYLT(){
+        return yLT;
+    }
+
+    method int getXRB(){
+        return xLT + width - 1;
+    }
+
+    method int getYRB(){
+        return yLT + length - 1;
+    }
+
+    method void changePosition(char key)
+    {
+        var int dir;
+        if (key = 131) {
+            let dir = -1;
+        }
+        else {
+            if (key = 133) {
+                let dir = 1;
+            }
+        }
+        let yLT = Math.min(Math.max(speed * dir + yLT, 0), 512-length);
+        return;
+    }
+}

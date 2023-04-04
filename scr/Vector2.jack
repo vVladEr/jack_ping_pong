@@ -17,11 +17,14 @@ class Vector2{
         return y;
     }
 
-    constructor Vector2 newFromTwoVectors(Vector2 a, Vector2 b)
+    method Vector2 sumVectors(Vector2 a, Vector2 b)
     {
+        var Vector2 sum;
+        var int x, y;
         let x = a.getX() + b.getX();
         let y = a.getY() + b.getY();
-        return this;
+        let sum = new(x, y);
+        return sum;
     }
 
     method void dispose(){
