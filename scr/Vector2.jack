@@ -30,11 +30,13 @@ class Vector2{
     method void reflectX()
     {
         x = -x;
+        return;
     }
 
     method void reflectY()
     {
         y = -y;
+        return;
     }
 
     method void dispose(){
