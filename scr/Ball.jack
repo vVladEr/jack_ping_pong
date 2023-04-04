@@ -1,13 +1,13 @@
 class Ball{
-    field int radius, x, y, speed;
+    field int x, y, speed;
     field Vector2 direction;
+    field static int radius = 3;
 
     constructor Ball new()
     {
         let x = 127;
         let y = 255;
-        let direction = Vector2.new(1,1);
-        let radius = 3;
+        let direction = Vector.new(-1,1);
         let speed = 1;
         return this;
     }
@@ -27,21 +27,43 @@ class Ball{
         return radius;
     }
 
-    method void changeDirection()
+    method void changeDirection(Vector2 a)
     {
-        var Vector2 temp;
-        let temp = Vector2.new(-direction.getX, -direction.getY)
-        let direction = temp;
+        direction = Vector2.sumVectors(a, direction);
+        return;
     }
 
-    method void move()
+    method void moveD()
+    {
+        if (direction.getY < 0){
+            if (-direction.getY > y){
+                let y = - direction.getY - y;
+                direction.reflectY();
+            }
+        }
+        else{
+            if(direction.getY > 512-y){
+                let y = 512 - direction.getY + y; 
+                direction.reflectY();
+            }
+            else{
+                let y = y + direction.getY;
+            }
+        }
+        let x = x + direction.getX;
+        return;
+    }
+
+    method void moveV()
     {
         let x = x + (direction.getX * speed);
         let y = y + (direction.getY * speed);
+        return;
     }
 
     method void increaseSpeed()
     {
         let speed = speed + 1;
+        return;
     }
 }

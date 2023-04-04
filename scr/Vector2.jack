@@ -9,7 +9,7 @@ class Vector2{
         return this;
     }
 
-    method int getX() {
+    method int getX(){
         return x;
     }
 
@@ -25,6 +25,16 @@ class Vector2{
         let y = a.getY() + b.getY();
         let sum = new(x, y);
         return sum;
+    }
+
+    method void reflectX()
+    {
+        x = -x;
+    }
+
+    method void reflectY()
+    {
+        y = -y;
     }
 
     method void dispose(){
