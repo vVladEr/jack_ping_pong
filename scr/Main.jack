@@ -1,8 +1,61 @@
 class Main {
     function void main () {
-        var Vector2 vector;  
-        let vector = Vector2.new(2,3);
-        do vector.dispose();
+        var bool endGame;
+        var Bat playerBat, AIBat;
+        var Ball ball;
+        var char key, aiKey;
+        while (Keyboard.keyPressed() = 0)
+        {
+
+        }
+        let endGame = false;
+        let playerBat = Bat.new(0);
+        let AIBat = Bat.new(251);
+        let ball = Ball.new();
+
+        do Ball.draw();
+        do playerBat.draw();
+        do AIBat.draw();
+
+        while (endGame = false)
+        {
+            let key = Keyboard.keyPressed();
+            if(key != 0)
+            {
+                do playerBat.erase();
+                do playerBat.changePosition(key);
+                do playerBat.draw();
+            }
+            let aiKey = 0;
+            if(ball.getY() > AIBat.getYLT() | ball.getY() < AIBat.getYRB())
+            {
+                if(ball.getY() > AIBat.getYLT())
+                {
+                    let aiKey = 131;
+                }
+                else
+                {
+                    let aiKey = 133;
+                }
+                do AIBat.erase();
+                do AIBat.changePosition(aiKey);
+                do AIBat.draw();
+            }
+            do ball.erase();
+            do ball.moveY();
+            var Vector2 dir;
+            let dir = ball.getDirection();
+            if (dir.getX() < 0){
+
+            }
+            do ball.draw();
+
+            if (ball.getX() < playerBat.getXRB() | ball.getX() = playerBat.getXRB() | ball.getX() > AIBat.getXRB() | ball.getX() = AIBat.getXRB())
+            {
+                let endGame = true;
+            }
+            
+        }
         return;
     }
 

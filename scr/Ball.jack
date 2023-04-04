@@ -27,46 +27,52 @@ class Ball{
         return radius;
     }
 
+    method Vector2 getDirection(){
+        return direction;
+    }
+
     method void changeDirection(Vector2 a)
     {
         let direction = Vector2.sumVectors(a, direction);
         return;
     }
 
-    method void moveD()
+    method void moveY()
     {
         if (direction.getY() < 0){
             if (-direction.getY() > y - radius){
                 let y = - direction.getY() - y + radius;
-                direction.reflectY();
+                do direction.reflectY();
             }
         }
         else{
             if(direction.getY() > 511 - y - radius){
                 let y = 1022 - direction.getY() - y - radius; 
-                direction.reflectY();
+                do direction.reflectY();
             }
             else{
                 let y = y + direction.getY();
             }
         }
+        return;
+    }
+
+    method void moveX()
+    {
         let x = x + direction.getX();
         return;
     }
 
     method void hitBat(Bat bat, char dirKey)
     {
-        var int delta;
-        let delta = x;
+        do direction.reflectX();
         var Vector2 hit;
         if (x < bat.getXLT()){
-            let x = bat.getXLT() - radius;
-            let delta = x - delta;
+            let x = 2 * bat.getXLT() + direction.getX() + radius - x;
             let hit = Vector2.new(-1,0);
         }
         else{
-            let x = bat.getXRB() + radius;
-            let delta = delta - x;
+            let x = 2 * bat.getXRB() + direction.getX() + radius - x;
             let hit = Vector2.new(1,0);
         }
         var Vector2 dir;
@@ -79,10 +85,8 @@ class Ball{
                 let dir = Vector2.new(0,1);
             }
         }
-        let y = direction.getY() * delta / direction.getX() + y;
         var Vector2 temp;
         let temp = Vector2.sumVectors(hit, dir);
-        direction.reflectX();
         let direction = Vector2.sumVectors(direction, temp);
     }
 
@@ -96,6 +100,20 @@ class Ball{
     method void increaseSpeed()
     {
         let speed = speed + 1;
+        return;
+    }
+
+    method void draw()
+    {
+        do Screen.setColor(true);
+        do Screen.drawCircle(X, Y, radius);
+        return;
+    }
+
+    method void erase()
+    {
+        do Screen.setColor(false);
+        do Screen.drawCircle(X, Y, radius);
         return;
     }
 
