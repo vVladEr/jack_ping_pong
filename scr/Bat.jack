@@ -37,6 +37,9 @@ class Bat{
             if (key = 133) {
                 let dir = 1;
             }
+            else {
+                return;
+            }
         }
         let yLT = Math.min(Math.max(speed * dir + yLT, 0), 512-length);
         return;
