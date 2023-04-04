@@ -36,14 +36,14 @@ class Ball{
     method void moveD()
     {
         if (direction.getY < 0){
-            if (-direction.getY > y){
-                let y = - direction.getY - y;
+            if (-direction.getY > y - radius){
+                let y = - direction.getY - y + radius;
                 direction.reflectY();
             }
         }
         else{
-            if(direction.getY > 512-y){
-                let y = 512 - direction.getY + y; 
+            if(direction.getY > 511 - y - radius){
+                let y = 1022 - direction.getY - y - radius; 
                 direction.reflectY();
             }
             else{
