@@ -27,11 +27,9 @@ class Ball{
         return radius;
     }
 
-    method void changeDirection()
+    method void changeDirection(Vector2 v)
     {
-        var Vector2 temp;
-        let temp = Vector2.new(-direction.getX, -direction.getY)
-        let direction = temp;
+        direction.add(v);
     }
 
     method void move()

@@ -1,33 +1,39 @@
 class Rocket()
 {
-    field int rtX, rtY, lbX, lbY;
+    field int LTX, LTY, RBX, RBY; // L- left, R - right, T -top, B - bottom
 
-    constructor Rocket new(int rtx, int rty, int lbx, int lby)
+    constructor Rocket new(int ltx, int lty, int rbx, int rby)
     {
-        let rtX = rtx;
-        let rtY = rty;
-        let lbX = lbx;
-        let lbY = lby;
+        let LTX = ltx;
+        let LTY = lty;
+        let RBX = rbx;
+        let RBY = rby;
         return this;
     }
 
-    method int getRTX()
+    method int getLTX()
     {
-        return rtX;
+        return LTX;
     }
 
-     method int getRTY()
+     method int getLTY()
     {
-        return rtY;
+        return LTY;
     }
 
-    method int getLBX()
+    method int getRBX()
     {
-        return lbX;
+        return RBX;
     }
 
-    method int getLBY()
+    method int getRBY()
     {
-        return lbY;
+        return RBY;
+    }
+
+    method void moveUp()
+    {
+        let LTY = LTY + 1;
+        let RBY = RBY + 1;
     }
 }

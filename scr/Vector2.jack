@@ -17,11 +17,10 @@ class Vector2{
         return y;
     }
 
-    constructor Vector2 newFromTwoVectors(Vector2 a, Vector2 b)
+    method void add(Vector2 b)
     {
-        let x = a.getX() + b.getX();
-        let y = a.getY() + b.getY();
-        return this;
+        let x = x + b.getX();
+        let y = y + b.getY();
     }
 
     method void dispose(){
