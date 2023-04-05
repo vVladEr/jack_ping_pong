@@ -52,7 +52,8 @@ class Main {
                         let yExp = ball.getY() + yDir;
                     }
                 }
-                if ((yExp > playerBat.getYLT())&(yExp < playerBat.getYRB())){
+                if ((yExp + ball.getRadius() > playerBat.getYLT())&
+                    (yExp - ball.getRadius() < playerBat.getYRB())){
                     do ball.hitBat(playerBat, key);
                 }
                 else{
@@ -80,7 +81,8 @@ class Main {
                             let yExp = ball.getY() + yDir;
                         }
                     }
-                    if ((yExp > aiBat.getYLT())&(yExp < aiBat.getYRB())){
+                    if ((yExp + ball.getRadius() > aiBat.getYLT())&
+                        (yExp - ball.getRadius() < aiBat.getYRB())){
                         do ball.hitBat(aiBat, aiKey);
                     }
                     else{
