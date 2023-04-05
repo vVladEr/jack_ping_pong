@@ -40,19 +40,19 @@ class Main {
                 let delta = ball.getX()-ball.getRadius()-playerBat.getXRB();
                 let yDir = yDir * delta / dir.getX();
                 if (yDir < 0){
-                    if(-yDir > y - radius){
-                        let yExp = 2 * ball.getRadius() - y - yDir;
+                    if(-yDir > ball.getY() - radius){
+                        let yExp = 2 * ball.getRadius() - ball.getY() - yDir;
                     }
                     else{
-                        let yExp = y + yDir;
+                        let yExp = ball.getY() + yDir;
                     }
                 }
                 else{
-                    if (yDir > 511 - y - r){
-                        let yExp = - 2 * ball.getRadius() + 1022 - yDir - y;
+                    if (yDir > 511 - ball.getY() - ball.getRadius()){
+                        let yExp = - 2 * ball.getRadius() + 1022 - yDir - ball.getY();
                     }
                     else{
-                        let yExp = y + yDir;
+                        let yExp = ball.getY() + yDir;
                     }
                 }
                 if ((yExp > playerBat.getXLT())&(yExp < playerBat.getXRB())){
@@ -68,19 +68,19 @@ class Main {
                     let delta = AIBat.getXLT()-ball.getX()-ball.getRadius();
                     let yDir = yDir * delta / dir.getX();
                     if (yDir < 0){
-                        if(-yDir > y - radius){
-                            let yExp = 2 * ball.getRadius() - y - yDir;
+                        if(-yDir > ball.getY() - radius){
+                            let yExp = 2 * ball.getRadius() - ball.getY() - yDir;
                         }
                         else{
-                            let yExp = y + yDir;
+                            let yExp = ball.getY() + yDir;
                         }
                     }
                     else{
-                        if (yDir > 511 - y - r){
-                            let yExp = - 2 * ball.getRadius() + 1022 - yDir - y;
+                        if (yDir > 511 - ball.getY() - ball.getRadius()){
+                            let yExp = - 2 * ball.getRadius() + 1022 - yDir - ball.getY();
                         }
                         else{
-                            let yExp = y + yDir;
+                            let yExp = ball.getY() + yDir;
                         }
                     }
                     if ((yExp > AIBat.getXLT())&(yExp < AIBatBat.getXRB())){
