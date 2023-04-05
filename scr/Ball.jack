@@ -5,11 +5,11 @@ class Ball{
 
     constructor Ball new()
     {
-        let x = 127;
-        let y = 255;
-        let direction = Vector.new(-1,1);
+        let x = 255;
+        let y = 127;
+        let direction = Vector2.new(-1,1);
         let speed = 1;
-        let radius = 3;
+        let radius = 15;
         return this;
     }
 
@@ -41,7 +41,7 @@ class Ball{
     method void moveY()
     {
         if (direction.getY() < 0){
-            if (-direction.getY() > y - radius){
+            if (-direction.getY() > (y - radius)){
                 let y = 2 * radius - direction.getY() - y;
                 do direction.reflectY();
             }
@@ -50,8 +50,8 @@ class Ball{
             }
         }
         else{
-            if(direction.getY() > 511 - y - radius){
-                let y = 1022 - direction.getY() - y - (2 * radius); 
+            if(direction.getY() > (255 - y - radius)){
+                let y = 510 - direction.getY() - y - (2 * radius); 
                 do direction.reflectY();
             }
             else{
@@ -74,11 +74,11 @@ class Ball{
         var Vector2 temp;
         do direction.reflectX();
         if (x < bat.getXLT()){
-            let x = 2 * bat.getXLT() + direction.getX() + radius - x;
+            let x = 2 * bat.getXLT() + direction.getX() - radius - radius - x;
             let hit = Vector2.new(-1,0);
         }
         else{
-            let x = 2 * bat.getXRB() + direction.getX() + radius - x;
+            let x = 2 * bat.getXRB() + direction.getX() + radius + radius - x;
             let hit = Vector2.new(1,0);
         }
         let dir = Vector2.new(0,0);
@@ -98,7 +98,7 @@ class Ball{
     method void draw()
     {
         do Screen.setColor(true);
-        do Screen.drawCircle(x, x, radius);
+        do Screen.drawCircle(x, y, radius);
         return;
     }
 

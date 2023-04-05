@@ -1,25 +1,22 @@
 class Main {
     function void main () {
         var bool endGame;
-        var Bat playerBat, AIBat;
+        var Bat playerBat, aiBat;
         var Ball ball;
         var char key, aiKey;
         var Vector2 dir;
         var int delta;
         var int yExp;
         var int yDir;
-        while (Keyboard.keyPressed() = 0)
-        {
 
-        }
         let endGame = false;
         let playerBat = Bat.new(0);
-        let AIBat = Bat.new(251);
+        let aiBat = Bat.new(502);
         let ball = Ball.new();
 
-        do Ball.draw();
+        do ball.draw();
+        do aiBat.draw();
         do playerBat.draw();
-        do AIBat.draw();
 
         while (endGame = false)
         {
@@ -35,12 +32,12 @@ class Main {
             let dir = ball.getDirection();
 
             let yDir = dir.getY();
-            if (ball.getX() > playerBat.getXRB() & 
-                ball.getX() - ball.getRadius() + dir.getX() < playerBat.getXRB()){
+            if ((ball.getX() > playerBat.getXRB()) & 
+                ((ball.getX() - ball.getRadius() + dir.getX()) < playerBat.getXRB())){
                 let delta = ball.getX()-ball.getRadius()-playerBat.getXRB();
                 let yDir = yDir * delta / dir.getX();
                 if (yDir < 0){
-                    if(-yDir > ball.getY() - ball.getRadius()){
+                    if(-yDir > (ball.getY() - ball.getRadius())){
                         let yExp = 2 * ball.getRadius() - ball.getY() - yDir;
                     }
                     else{
@@ -48,14 +45,14 @@ class Main {
                     }
                 }
                 else{
-                    if (yDir > 511 - ball.getY() - ball.getRadius()){
-                        let yExp = - 2 * ball.getRadius() + 1022 - yDir - ball.getY();
+                    if (yDir > (255 - ball.getY() - ball.getRadius())){
+                        let yExp = - 2 * ball.getRadius() + 510 - yDir - ball.getY();
                     }
                     else{
                         let yExp = ball.getY() + yDir;
                     }
                 }
-                if ((yExp > playerBat.getXLT())&(yExp < playerBat.getXRB())){
+                if ((yExp > playerBat.getYLT())&(yExp < playerBat.getYRB())){
                     do ball.hitBat(playerBat, key);
                 }
                 else{
@@ -63,12 +60,12 @@ class Main {
                 }
             }
             else {
-                if (ball.getX() < AIBat.getXLT() & 
-                    ball.getX() + ball.getRadius() + dir.getX() > AIBat.getXLT()){
-                    let delta = AIBat.getXLT()-ball.getX()-ball.getRadius();
+                if ((ball.getX() < aiBat.getXLT()) & 
+                    (ball.getX() + ball.getRadius() + dir.getX() > aiBat.getXLT())){
+                    let delta = aiBat.getXLT()-ball.getX()-ball.getRadius();
                     let yDir = yDir * delta / dir.getX();
                     if (yDir < 0){
-                        if(-yDir > ball.getY() - ball.getRadius()){
+                        if(-yDir > (ball.getY() - ball.getRadius())){
                             let yExp = 2 * ball.getRadius() - ball.getY() - yDir;
                         }
                         else{
@@ -76,15 +73,15 @@ class Main {
                         }
                     }
                     else{
-                        if (yDir > 511 - ball.getY() - ball.getRadius()){
-                            let yExp = - 2 * ball.getRadius() + 1022 - yDir - ball.getY();
+                        if (yDir > (255 - ball.getY() - ball.getRadius())){
+                            let yExp = - 2 * ball.getRadius() + 510 - yDir - ball.getY();
                         }
                         else{
                             let yExp = ball.getY() + yDir;
                         }
                     }
-                    if ((yExp > AIBat.getXLT())&(yExp < AIBatBat.getXRB())){
-                        do ball.hitBat(AIBat, aiKey);
+                    if ((yExp > aiBat.getYLT())&(yExp < aiBat.getYRB())){
+                        do ball.hitBat(aiBat, aiKey);
                     }
                     else{
                         let endGame = true;
@@ -99,9 +96,9 @@ class Main {
             do ball.draw();
 
             let aiKey = 0;
-            if(ball.getY() > AIBat.getYLT() | ball.getY() < AIBat.getYRB())
+            if((ball.getY() < aiBat.getYLT()) | (ball.getY() > aiBat.getYRB()))
             {
-                if(ball.getY() > AIBat.getYLT())
+                if(ball.getY() < aiBat.getYLT())
                 {
                     let aiKey = 131;
                 }
@@ -109,14 +106,9 @@ class Main {
                 {
                     let aiKey = 133;
                 }
-                do AIBat.erase();
-                do AIBat.changePosition(aiKey);
-                do AIBat.draw();
-            }
-
-            if ((ball.getX() < playerBat.getXRB()) | (ball.getX() = playerBat.getXRB()) | (ball.getX() > AIBat.getXRB()) | (ball.getX() = AIBat.getXRB()))
-            {
-                let endGame = true;
+                do aiBat.erase();
+                do aiBat.changePosition(aiKey);
+                do aiBat.draw();
             }
         } 
         return; 

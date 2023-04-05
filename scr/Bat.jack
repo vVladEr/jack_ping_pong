@@ -7,10 +7,10 @@ class Bat{
     constructor Bat new(int x)
     {
         let xLT = x;
-        let yLT = 246;
-        let length = 20;
-        let width = 5;
-        let speed = 2;
+        let yLT = 78;
+        let length = 100;
+        let width = 10;
+        let speed = 5;
         return this;
     }
 
@@ -44,7 +44,7 @@ class Bat{
                 return;
             }
         }
-        let yLT = Math.min(Math.max(speed * dir + yLT, 0), 512-length);
+        let yLT = Math.min(Math.max(speed * dir + yLT, 0), 256-length);
         return;
     }
 
