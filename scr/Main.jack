@@ -40,7 +40,7 @@ class Main {
                 let delta = ball.getX()-ball.getRadius()-playerBat.getXRB();
                 let yDir = yDir * delta / dir.getX();
                 if (yDir < 0){
-                    if(-yDir > ball.getY() - radius){
+                    if(-yDir > ball.getY() - ball.getRadius()){
                         let yExp = 2 * ball.getRadius() - ball.getY() - yDir;
                     }
                     else{
@@ -68,7 +68,7 @@ class Main {
                     let delta = AIBat.getXLT()-ball.getX()-ball.getRadius();
                     let yDir = yDir * delta / dir.getX();
                     if (yDir < 0){
-                        if(-yDir > ball.getY() - radius){
+                        if(-yDir > ball.getY() - ball.getRadius()){
                             let yExp = 2 * ball.getRadius() - ball.getY() - yDir;
                         }
                         else{
