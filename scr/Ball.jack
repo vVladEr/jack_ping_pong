@@ -41,13 +41,13 @@ class Ball{
     {
         if (direction.getY() < 0){
             if (-direction.getY() > y - radius){
-                let y = - direction.getY() - y + radius;
+                let y = 2 * radius - direction.getY() - y;
                 do direction.reflectY();
             }
         }
         else{
             if(direction.getY() > 511 - y - radius){
-                let y = 1022 - direction.getY() - y - radius; 
+                let y = 1022 - direction.getY() - y - (2 * radius); 
                 do direction.reflectY();
             }
             else{
@@ -88,19 +88,6 @@ class Ball{
         var Vector2 temp;
         let temp = Vector2.sumVectors(hit, dir);
         let direction = Vector2.sumVectors(direction, temp);
-    }
-
-    method void moveV()
-    {
-        let x = x + (direction.getX * speed);
-        let y = y + (direction.getY * speed);
-        return;
-    }
-
-    method void increaseSpeed()
-    {
-        let speed = speed + 1;
-        return;
     }
 
     method void draw()
