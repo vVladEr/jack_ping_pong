@@ -20,10 +20,10 @@ class Vector2{
     method Vector2 sumVectors(Vector2 a, Vector2 b)
     {
         var Vector2 sum;
-        var int x, y;
-        let x = a.getX() + b.getX();
-        let y = a.getY() + b.getY();
-        let sum = new(x, y);
+        var int newX, newY;
+        let newX = a.getX() + b.getX();
+        let newY = a.getY() + b.getY();
+        let sum = Vector2.new(newX, newY);
         return sum;
     }
 

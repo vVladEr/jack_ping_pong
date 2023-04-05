@@ -1,7 +1,7 @@
 class Ball{
     field int x, y, speed;
     field Vector2 direction;
-    static int radius = 3;
+    field int radius;
 
     constructor Ball new()
     {
@@ -9,6 +9,7 @@ class Ball{
         let y = 255;
         let direction = Vector.new(-1,1);
         let speed = 1;
+        let radius = 3;
         return this;
     }
 
@@ -33,7 +34,7 @@ class Ball{
 
     method void changeDirection(Vector2 a)
     {
-        let direction = Vector2.sumVectors(a, direction);
+        let direction = direction.sumVectors(a, direction);
         return;
     }
 
@@ -68,8 +69,10 @@ class Ball{
 
     method void hitBat(Bat bat, char dirKey)
     {
-        do direction.reflectX();
         var Vector2 hit;
+        var Vector2 dir;
+        var Vector2 temp;
+        do direction.reflectX();
         if (x < bat.getXLT()){
             let x = 2 * bat.getXLT() + direction.getX() + radius - x;
             let hit = Vector2.new(-1,0);
@@ -78,7 +81,6 @@ class Ball{
             let x = 2 * bat.getXRB() + direction.getX() + radius - x;
             let hit = Vector2.new(1,0);
         }
-        var Vector2 dir;
         let dir = Vector2.new(0,0);
         if (dirKey = 131){
             let dir = Vector2.new(0,-1);
@@ -88,22 +90,22 @@ class Ball{
                 let dir = Vector2.new(0,1);
             }
         }
-        var Vector2 temp;
-        let temp = Vector2.sumVectors(hit, dir);
-        let direction = Vector2.sumVectors(direction, temp);
+        let temp = hit.sumVectors(hit, dir);
+        let direction = direction.sumVectors(direction, temp);
+        return;
     }
 
     method void draw()
     {
         do Screen.setColor(true);
-        do Screen.drawCircle(X, Y, radius);
+        do Screen.drawCircle(x, x, radius);
         return;
     }
 
     method void erase()
     {
         do Screen.setColor(false);
-        do Screen.drawCircle(X, Y, radius);
+        do Screen.drawCircle(x, y, radius);
         return;
     }
 

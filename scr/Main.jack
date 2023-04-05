@@ -4,6 +4,10 @@ class Main {
         var Bat playerBat, AIBat;
         var Ball ball;
         var char key, aiKey;
+        var Vector2 dir;
+        var int delta;
+        var int yExp;
+        var int yDir;
         while (Keyboard.keyPressed() = 0)
         {
 
@@ -20,18 +24,16 @@ class Main {
         while (endGame = false)
         {
             let key = Keyboard.keyPressed();
-            if(key != 0)
+            if(~(key = 0))
             {
                 do playerBat.erase();
                 do playerBat.changePosition(key);
                 do playerBat.draw();
             }
             do ball.erase();
-            var Vector2 dir;
+            
             let dir = ball.getDirection();
-            var int delta;
-            var int yExp;
-            var int yDir;
+
             let yDir = dir.getY();
             if (ball.getX() > playerBat.getXRB() & 
                 ball.getX() - ball.getRadius() + dir.getX() < playerBat.getXRB()){
@@ -116,7 +118,8 @@ class Main {
             {
                 let endGame = true;
             }
-        }  
+        } 
+        return; 
     }
-    return;
+
 }

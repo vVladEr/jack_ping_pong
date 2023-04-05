@@ -1,13 +1,16 @@
 class Bat{
     field int xLT, yLT;
-    static int length = 20;
-    static int width = 5;
-    static int speed = 2;
+    field int length;
+    field int width;
+    field int speed;
 
     constructor Bat new(int x)
     {
         let xLT = x;
         let yLT = 246;
+        let length = 20;
+        let width = 5;
+        let speed = 2;
         return this;
     }
 
