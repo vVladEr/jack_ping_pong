@@ -44,6 +44,9 @@ class Ball{
                 let y = 2 * radius - direction.getY() - y;
                 do direction.reflectY();
             }
+            else{
+                let y = y + direction.getY();
+            }
         }
         else{
             if(direction.getY() > 511 - y - radius){

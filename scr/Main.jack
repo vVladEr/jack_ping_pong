@@ -26,6 +26,76 @@ class Main {
                 do playerBat.changePosition(key);
                 do playerBat.draw();
             }
+            do ball.erase();
+            var Vector2 dir;
+            let dir = ball.getDirection();
+            var int delta;
+            var int yExp;
+            var int yDir;
+            let yDir = dir.getY();
+            if (ball.getX() > playerBat.getXRB() & 
+                ball.getX() - ball.getRadius() + dir.getX() < playerBat.getXRB()){
+                let delta = ball.getX()-ball.getRadius()-playerBat.getXRB();
+                let yDir = yDir * delta / dir.getX();
+                if (yDir < 0){
+                    if(-yDir > y - radius){
+                        let yExp = 2 * ball.getRadius() - y - yDir;
+                    }
+                    else{
+                        let yExp = y + yDir;
+                    }
+                }
+                else{
+                    if (yDir > 511 - y - r){
+                        let yExp = - 2 * ball.getRadius() + 1022 - yDir - y;
+                    }
+                    else{
+                        let yExp = y + yDir;
+                    }
+                }
+                if ((yExp > playerBat.getXLT())&(yExp < playerBat.getXRB())){
+                    do ball.hitBat(playerBat, key);
+                }
+                else{
+                    let endGame = true;
+                }
+            }
+            else {
+                if (ball.getX() < AIBat.getXLT() & 
+                    ball.getX() + ball.getRadius() + dir.getX() > AIBat.getXLT()){
+                    let delta = AIBat.getXLT()-ball.getX()-ball.getRadius();
+                    let yDir = yDir * delta / dir.getX();
+                    if (yDir < 0){
+                        if(-yDir > y - radius){
+                            let yExp = 2 * ball.getRadius() - y - yDir;
+                        }
+                        else{
+                            let yExp = y + yDir;
+                        }
+                    }
+                    else{
+                        if (yDir > 511 - y - r){
+                            let yExp = - 2 * ball.getRadius() + 1022 - yDir - y;
+                        }
+                        else{
+                            let yExp = y + yDir;
+                        }
+                    }
+                    if ((yExp > AIBat.getXLT())&(yExp < AIBatBat.getXRB())){
+                        do ball.hitBat(AIBat, aiKey);
+                    }
+                    else{
+                        let endGame = true;
+                    }
+                }
+                else{
+                    do ball.moveX();
+                }
+            }
+            
+            do ball.moveY();
+            do ball.draw();
+
             let aiKey = 0;
             if(ball.getY() > AIBat.getYLT() | ball.getY() < AIBat.getYRB())
             {
@@ -41,22 +111,12 @@ class Main {
                 do AIBat.changePosition(aiKey);
                 do AIBat.draw();
             }
-            do ball.erase();
-            do ball.moveY();
-            var Vector2 dir;
-            let dir = ball.getDirection();
-            if (dir.getX() < 0){
 
-            }
-            do ball.draw();
-
-            if (ball.getX() < playerBat.getXRB() | ball.getX() = playerBat.getXRB() | ball.getX() > AIBat.getXRB() | ball.getX() = AIBat.getXRB())
+            if ((ball.getX() < playerBat.getXRB()) | (ball.getX() = playerBat.getXRB()) | (ball.getX() > AIBat.getXRB()) | (ball.getX() = AIBat.getXRB()))
             {
                 let endGame = true;
             }
-            
-        }
-        return;
+        }  
     }
-
+    return;
 }
