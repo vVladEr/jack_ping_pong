@@ -13,6 +13,16 @@ class Ball{
         return this;
     }
 
+    constructor Ball copy(Ball b)
+    {
+        let x = b.getX();
+        let y = b.getY();
+        let radius = b.getRadius();
+        let direction = Vector2.new(0,0);
+        let speed = 0;
+        return this;
+    }
+
     method int getX() 
     {
         return x;
@@ -117,6 +127,7 @@ class Ball{
     }
 
     method void dispose(){
+        do direction.dispose();
         do Memory.deAlloc(this);
         return;
     }

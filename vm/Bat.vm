@@ -14,6 +14,26 @@ push argument 1
 pop this 4
 push pointer 0
 return
+function Bat.copy 0
+push constant 5
+call Memory.alloc 1
+pop pointer 0
+push argument 0
+call Bat.getXLT 1
+pop this 0
+push argument 0
+call Bat.getYLT 1
+pop this 1
+push argument 0
+call Bat.getLength 1
+pop this 2
+push argument 0
+call Bat.getWidth 1
+pop this 3
+push constant 0
+pop this 4
+push pointer 0
+return
 function Bat.getXLT 0
 push argument 0
 pop pointer 0
@@ -41,6 +61,16 @@ push this 2
 add
 push constant 1
 sub
+return
+function Bat.getLength 0
+push argument 0
+pop pointer 0
+push this 2
+return
+function Bat.getWidth 0
+push argument 0
+pop pointer 0
+push this 3
 return
 function Bat.changePosition 1
 push argument 0

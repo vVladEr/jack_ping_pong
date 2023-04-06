@@ -1,8 +1,9 @@
-class Game()
+class Game
 {
     field bool endGame;
     field Bat playerBat, aiBat;
     field Ball ball;
+    field char key, aiKey;
 
     constructor Game new()
     {
@@ -10,26 +11,144 @@ class Game()
         let playerBat = Bat.new(0,5);
         let aiBat = Bat.new(502,3);
         let ball = Ball.new();
+        let key = 0;
+        let aiKey = 0;
         return this;
     }
 
     method void run()
     {
+        do ball.draw();
+        do playerBat.draw();
+        do aiBat.draw();
+        while(endGame = false)
+        {
+            do playerLogic();
+            do ballLogic();
+            do aiLogic();
+        }
         return;
     }
 
     method void playerLogic()
     {
+        var Bat ghostBat;
+        let key = Keyboard.keyPressed();
+        if(~(key = 0))
+        {
+            let ghostBat = Bat.copy(playerBat);
+            do playerBat.changePosition(key);
+            do ghostBat.erase();
+            do playerBat.draw();
+            do ghostBat.dispose();
+        }
         return;
     }
 
     method void aiLogic()
     {
+        var Bat ghostBat;
+
+        let aiKey = 0;
+        if((ball.getY() < aiBat.getYLT()) | (ball.getY() > aiBat.getYRB()))
+        {
+            if(ball.getY() < aiBat.getYLT())
+            {
+                let aiKey = 131;
+            }
+            else
+            {
+                let aiKey = 133;
+            }
+            let ghostBat = Bat.copy(aiBat);
+            do aiBat.changePosition(aiKey);
+            do ghostBat.erase();            
+            do aiBat.draw();
+            do ghostBat.dispose();
+        }
         return;
     }
 
     method void ballLogic()
     {
+        var Vector2 dir;
+        var int delta;
+        var int yExp;
+        var int yDir;
+        var Ball ghostBall;
+
+        let key = Keyboard.keyPressed();
+
+        let ghostBall = Ball.copy(ball);
+
+        let dir = ball.getDirection();
+        let yDir = dir.getY();
+        if ((ball.getX() > playerBat.getXRB()) & 
+            ((ball.getX() - ball.getRadius() + dir.getX()) < playerBat.getXRB())){
+            let delta = ball.getX()-ball.getRadius()-playerBat.getXRB();
+            let yDir = yDir * delta / dir.getX();
+            if (yDir < 0){
+                if(-yDir > (ball.getY() - ball.getRadius())){
+                    let yExp = 2 * ball.getRadius() - ball.getY() - yDir;
+                }
+                else{
+                    let yExp = ball.getY() + yDir;
+                }
+            }
+            else{
+                if (yDir > (255 - ball.getY() - ball.getRadius())){
+                    let yExp = - 2 * ball.getRadius() + 510 - yDir - ball.getY();
+                }
+                else{
+                    let yExp = ball.getY() + yDir;
+                }
+            }
+            if ((yExp + ball.getRadius() > playerBat.getYLT())&
+                (yExp - ball.getRadius() < playerBat.getYRB())){
+                do ball.hitBat(playerBat, key);
+            }
+            else{
+                let endGame = true;
+            }
+        }
+        else {
+            if ((ball.getX() < aiBat.getXLT()) & 
+                (ball.getX() + ball.getRadius() + dir.getX() > aiBat.getXLT())){
+                let delta = aiBat.getXLT()-ball.getX()-ball.getRadius();
+                let yDir = yDir * delta / dir.getX();
+                if (yDir < 0){
+                    if(-yDir > (ball.getY() - ball.getRadius())){
+                        let yExp = 2 * ball.getRadius() - ball.getY() - yDir;
+                    }
+                    else{
+                        let yExp = ball.getY() + yDir;
+                    }
+                }
+                else{
+                    if (yDir > (255 - ball.getY() - ball.getRadius())){
+                        let yExp = - 2 * ball.getRadius() + 510 - yDir - ball.getY();
+                    }
+                    else{
+                        let yExp = ball.getY() + yDir;
+                    }
+                }
+                if ((yExp + ball.getRadius() > aiBat.getYLT())&
+                    (yExp - ball.getRadius() < aiBat.getYRB())){
+                    do ball.hitBat(aiBat, aiKey);
+                }
+                else{
+                    let endGame = true;
+                }
+            }
+            else{
+                do ball.moveX();
+            }
+        }
+        
+        do ball.moveY();
+        do ghostBall.erase();
+        do ball.draw();
+        do ghostBall.dispose();
         return;
     }
 

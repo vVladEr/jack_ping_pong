@@ -14,6 +14,16 @@ class Bat{
         return this;
     }
 
+    constructor Bat copy(Bat b)
+    {
+        let xLT = b.getXLT();
+        let yLT = b.getYLT();
+        let length = b.getLength();
+        let width = b.getWidth();
+        let speed = 0;
+        return this;
+    }
+
     method int getXLT(){
         return xLT;
     }
@@ -28,6 +38,15 @@ class Bat{
 
     method int getYRB(){
         return yLT + length - 1;
+    }
+    
+    method int getLength()
+    {
+        return length;
+    }
+    method int getWidth()
+    {
+        return width;
     }
 
     method void changePosition(char key)

@@ -17,6 +17,27 @@ push constant 15
 pop this 4
 push pointer 0
 return
+function Ball.copy 0
+push constant 5
+call Memory.alloc 1
+pop pointer 0
+push argument 0
+call Ball.getX 1
+pop this 0
+push argument 0
+call Ball.getY 1
+pop this 1
+push argument 0
+call Ball.getRadius 1
+pop this 4
+push constant 0
+push constant 0
+call Vector2.new 2
+pop this 3
+push constant 0
+pop this 2
+push pointer 0
+return
 function Ball.getX 0
 push argument 0
 pop pointer 0
@@ -284,6 +305,9 @@ return
 function Ball.dispose 0
 push argument 0
 pop pointer 0
+push this 3
+call Vector2.dispose 1
+pop temp 0
 push pointer 0
 call Memory.deAlloc 1
 pop temp 0
