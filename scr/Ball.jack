@@ -9,7 +9,7 @@ class Ball{
         let y = 127;
         let direction = Vector2.new(-1,1);
         let speed = 1;
-        let radius = 15;
+        let radius = 10;
         return this;
     }
 
@@ -56,7 +56,8 @@ class Ball{
                 do direction.reflectY();
             }
             else{
-                let y = y + Math.max(direction.getY(),(-5));
+                do limitDirection();
+                let y = y + direction.getY();
             }
         }
         else{
@@ -65,7 +66,8 @@ class Ball{
                 do direction.reflectY();
             }
             else{
-                let y = y + Math.min(direction.getY(), 5);
+                do limitDirection();
+                let y = y + direction.getY();
             }
         }
         return;
@@ -73,15 +75,34 @@ class Ball{
 
     method void moveX()
     {
-        if(direction.getX() > 0)
-        {
-            let x = x + Math.min(direction.getX(), 5);
-        }
-        else
-        {
-            let x = x + Math.max(direction.getX(), (-5));
-        }
+        do limitDirection();
+        let x = x + direction.getX();
         return;
+    }
+
+    method void limitDirection()
+    {
+        var int dirX, dirY;
+        let dirX = direction.getX();
+        let dirY = direction.getY();
+        if(dirX > 5)
+        {
+            let direction = Vector2.new(5, dirY);
+        }
+        if(-5 > dirX)
+        {
+            let direction = Vector2.new(-5, dirY);
+        }
+        let dirX = direction.getX();
+        if(dirY > 5)
+        {
+            let direction = Vector2.new(dirX, 5);
+        }
+        if(-5 > dirY)
+        {
+            let direction = Vector2.new(dirX, -5);
+        }
+        return;        
     }
 
     method void hitBat(Bat bat, char dirKey)
