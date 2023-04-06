@@ -1,0 +1,65 @@
+function Vector2.new 0
+push constant 2
+call Memory.alloc 1
+pop pointer 0
+push argument 0
+pop this 0
+push argument 1
+pop this 1
+push pointer 0
+return
+function Vector2.getX 0
+push argument 0
+pop pointer 0
+push this 0
+return
+function Vector2.getY 0
+push argument 0
+pop pointer 0
+push this 1
+return
+function Vector2.sumVectors 3
+push argument 0
+pop pointer 0
+push argument 1
+call Vector2.getX 1
+push argument 2
+call Vector2.getX 1
+add
+pop local 1
+push argument 1
+call Vector2.getY 1
+push argument 2
+call Vector2.getY 1
+add
+pop local 2
+push local 1
+push local 2
+call Vector2.new 2
+pop local 0
+push local 0
+return
+function Vector2.reflectX 0
+push argument 0
+pop pointer 0
+push this 0
+neg
+pop this 0
+push constant 0
+return
+function Vector2.reflectY 0
+push argument 0
+pop pointer 0
+push this 1
+neg
+pop this 1
+push constant 0
+return
+function Vector2.dispose 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return

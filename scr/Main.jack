@@ -8,10 +8,12 @@ class Main {
         var int delta;
         var int yExp;
         var int yDir;
+        var int prevBallX, prevBallY, prevBallRadius;
+        var int prevBatXLT, prevBatYLT, prevBatXRB, prevBatYRB;
 
         let endGame = false;
-        let playerBat = Bat.new(0);
-        let aiBat = Bat.new(502);
+        let playerBat = Bat.new(0,5);
+        let aiBat = Bat.new(502,3);
         let ball = Ball.new();
 
         do ball.draw();
@@ -23,11 +25,21 @@ class Main {
             let key = Keyboard.keyPressed();
             if(~(key = 0))
             {
-                do playerBat.erase();
+                let prevBatXLT = playerBat.getXLT();
+                let prevBatYLT = playerBat.getYLT();
+                let prevBatXRB = playerBat.getXRB();
+                let prevBatYRB = playerBat.getYRB();
                 do playerBat.changePosition(key);
+
+                do Screen.setColor(false);
+                do Screen.drawRectangle(prevBatXLT, prevBatYLT, prevBatXRB, prevBatYRB);
+
                 do playerBat.draw();
             }
-            do ball.erase();
+
+            let prevBallX = ball.getX();
+            let prevBallY = ball.getY();
+            let prevBallRadius = ball.getRadius();
             
             let dir = ball.getDirection();
 
@@ -95,6 +107,8 @@ class Main {
             }
             
             do ball.moveY();
+            do Screen.setColor(false);
+            do Screen.drawCircle(prevBallX, prevBallY, prevBallRadius);
             do ball.draw();
 
             let aiKey = 0;
@@ -108,8 +122,14 @@ class Main {
                 {
                     let aiKey = 133;
                 }
-                do aiBat.erase();
+
+                let prevBatXLT = aiBat.getXLT();
+                let prevBatYLT = aiBat.getYLT();
+                let prevBatXRB = aiBat.getXRB();
+                let prevBatYRB = aiBat.getYRB();
                 do aiBat.changePosition(aiKey);
+                do Screen.setColor(false);
+                do Screen.drawRectangle(prevBatXLT, prevBatYLT, prevBatXRB, prevBatYRB);                
                 do aiBat.draw();
             }
         } 

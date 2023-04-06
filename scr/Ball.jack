@@ -46,7 +46,7 @@ class Ball{
                 do direction.reflectY();
             }
             else{
-                let y = y + direction.getY();
+                let y = y + Math.max(direction.getY(),(-5));
             }
         }
         else{
@@ -55,7 +55,7 @@ class Ball{
                 do direction.reflectY();
             }
             else{
-                let y = y + direction.getY();
+                let y = y + Math.min(direction.getY(), 5);
             }
         }
         return;
@@ -63,7 +63,14 @@ class Ball{
 
     method void moveX()
     {
-        let x = x + direction.getX();
+        if(direction.getX() > 0)
+        {
+            let x = x + Math.min(direction.getX(), 5);
+        }
+        else
+        {
+            let x = x + Math.max(direction.getX(), (-5));
+        }
         return;
     }
 

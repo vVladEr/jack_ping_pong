@@ -4,13 +4,13 @@ class Bat{
     field int width;
     field int speed;
 
-    constructor Bat new(int x)
+    constructor Bat new(int x, int incomingSpeed)
     {
         let xLT = x;
         let yLT = 78;
         let length = 100;
         let width = 10;
-        let speed = 5;
+        let speed = incomingSpeed;
         return this;
     }
 
