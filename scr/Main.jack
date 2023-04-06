@@ -40,7 +40,7 @@ class Main {
             let prevBallX = ball.getX();
             let prevBallY = ball.getY();
             let prevBallRadius = ball.getRadius();
-            
+
             let dir = ball.getDirection();
 
             let yDir = dir.getY();
@@ -110,6 +110,7 @@ class Main {
             do Screen.setColor(false);
             do Screen.drawCircle(prevBallX, prevBallY, prevBallRadius);
             do ball.draw();
+            
 
             let aiKey = 0;
             if((ball.getY() < aiBat.getYLT()) | (ball.getY() > aiBat.getYRB()))

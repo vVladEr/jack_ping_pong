@@ -1,0 +1,44 @@
+class Game()
+{
+    field bool endGame;
+    field Bat playerBat, aiBat;
+    field Ball ball;
+
+    constructor Game new()
+    {
+        let endGame = false;
+        let playerBat = Bat.new(0,5);
+        let aiBat = Bat.new(502,3);
+        let ball = Ball.new();
+        return this;
+    }
+
+    method void run()
+    {
+        return;
+    }
+
+    method void playerLogic()
+    {
+        return;
+    }
+
+    method void aiLogic()
+    {
+        return;
+    }
+
+    method void ballLogic()
+    {
+        return;
+    }
+
+    method void dispose()
+    {
+        do playerBat.dispose();
+        do aiBat.dispose();
+        do ball.dispose();
+        do Memory.deAlloc(this);
+        return;
+    }
+}
